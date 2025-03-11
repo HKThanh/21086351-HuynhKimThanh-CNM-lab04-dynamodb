@@ -68,3 +68,23 @@ app.post('/add', upload.fields([]), (req, res) => {
         }
     });
 });
+
+//delete data
+app.post('/delete/:id', (req, res) => {
+    const { id } = req.params;
+
+    const params = {
+        TableName: tableName,
+        Key: {
+            id: Number.parseInt(id)
+        }
+    };
+
+    docClient.delete(params, function(err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+});
