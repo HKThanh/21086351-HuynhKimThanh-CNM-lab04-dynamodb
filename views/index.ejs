@@ -42,7 +42,7 @@
                                 <%= item.department%>
                             </td>
                             <td>
-                                <input type="checkbox" name="id" value="<%= item.id %>">
+                                <button type="submit" name="id" value="<%= item.id%>">Delete</button>
                             </td>
                         </tr>
                         <%}) %>
@@ -53,7 +53,7 @@
         </form>
 
 
-        <form action="/save" method="post">
+        <form action="/add" method="post">
             <input type="text" name="id" placeholder="Nhập id...">
             <br>
             <input type="text" name="name" placeholder="Nhập name...">

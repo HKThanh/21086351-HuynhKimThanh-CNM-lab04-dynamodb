@@ -41,3 +41,30 @@ app.get('/', (req, res) => {
         }
     });
 });
+
+const multer = require('multer');
+const upload = multer();
+
+//write data
+app.post('/add', upload.fields([]), (req, res) => {
+    const { id, name, department, course_type, semester } = req.body;
+
+    const params = {
+        TableName: tableName,
+        Item: {
+            id: Number.parseInt(id),
+            name: name,
+            department: department,
+            course_type: course_type,
+            semester: semester
+        }
+    };
+
+    docClient.put(params, function(err, data) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+});
